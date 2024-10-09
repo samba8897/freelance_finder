@@ -23,8 +23,16 @@ const connect = async () => {
     console.log(error);
   }
 };
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Allow requests from any origin
+    callback(null, origin || '*');
+  },
+  credentials: true, // Enable credentials (cookies, sessions, etc.)
+  optionsSuccessStatus: 200, // Some legacy browsers choke on 204
+};
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 
