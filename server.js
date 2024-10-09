@@ -24,10 +24,17 @@ const connect = async () => {
   }
 };
 
+//const corsOptions = {
+ // origin: "https://prolancer.netlify.app", 
+ // credentials: true, 
+ // optionsSuccessStatus: 200, 
+//};
 const corsOptions = {
-  origin: "https://prolancer.netlify.app", // Your deployed frontend URL
-  credentials: true, // Enable credentials
-  optionsSuccessStatus: 200, // Some legacy browsers choke on 204
+  origin: "https://prolancer.netlify.app", 
+  credentials: true, 
+  optionsSuccessStatus: 200,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"], 
 };
 
 app.use(cors(corsOptions));
