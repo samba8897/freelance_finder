@@ -14,8 +14,7 @@ import cors from "cors";
 const app = express();
 dotenv.config();
 mongoose.set("strictQuery", true);
-const PORT = process.env.PORT || 8800; // Updated to use uppercase PORT
-
+const PORT = process.env.PORT || 8800; // Use 'PORT' not 'port'
 const connect = async () => {
   try {
     await mongoose.connect(process.env.MONGO);
@@ -26,9 +25,9 @@ const connect = async () => {
 };
 
 const corsOptions = {
-  origin: "https://prolancer.netlify.app", // Allow your Netlify domain
-  credentials: true, // Enable credentials (cookies, sessions, etc.)
-  optionsSuccessStatus: 200 // Some legacy browsers choke on 204
+  origin: "https://prolancer.netlify.app", // Your deployed frontend URL
+  credentials: true, // Enable credentials
+  optionsSuccessStatus: 200, // Some legacy browsers choke on 204
 };
 
 app.use(cors(corsOptions));
