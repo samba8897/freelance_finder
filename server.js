@@ -14,7 +14,8 @@ import cors from "cors";
 const app = express();
 dotenv.config();
 mongoose.set("strictQuery", true);
-const PORT=process.env.port || 8800;
+const PORT = process.env.PORT || 8800; // Updated to use uppercase PORT
+
 const connect = async () => {
   try {
     await mongoose.connect(process.env.MONGO);
@@ -23,13 +24,11 @@ const connect = async () => {
     console.log(error);
   }
 };
+
 const corsOptions = {
-  origin: (origin, callback) => {
-    // Allow requests from any origin
-    callback(null, origin || '*');
-  },
+  origin: "https://prolancer.netlify.app", // Allow your Netlify domain
   credentials: true, // Enable credentials (cookies, sessions, etc.)
-  optionsSuccessStatus: 200, // Some legacy browsers choke on 204
+  optionsSuccessStatus: 200 // Some legacy browsers choke on 204
 };
 
 app.use(cors(corsOptions));
@@ -47,7 +46,6 @@ app.use("/api/reviews", reviewRoute);
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
   const errorMessage = err.message || "Something went wrong!";
-
   return res.status(errorStatus).send(errorMessage);
 });
 
