@@ -14,7 +14,7 @@ import cors from "cors";
 const app = express();
 dotenv.config();
 mongoose.set("strictQuery", true);
-
+const PORT=process.env.port || 8800;
 const connect = async () => {
   try {
     await mongoose.connect(process.env.MONGO);
@@ -43,7 +43,7 @@ app.use((err, req, res, next) => {
   return res.status(errorStatus).send(errorMessage);
 });
 
-app.listen(8800, () => {
+app.listen(PORT, () => {
   connect();
   console.log("Backend server is running!");
 });
