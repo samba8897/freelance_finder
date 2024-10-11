@@ -25,8 +25,7 @@ export const login = async (req, res, next) => {
     if (!user) return next(createError(404, "User not found!"));
 
     const isCorrect = bcrypt.compareSync(req.body.password, user.password);
-    if (!isCorrect)
-      return next(createError(400, "Wrong password or username!"));
+    if (!isCorrect) return next(createError(400, "Wrong password or username!"));
 
     const token = jwt.sign(
       {
@@ -45,7 +44,7 @@ export const login = async (req, res, next) => {
         sameSite: "none", // Necessary for cross-site cookie sharing
       })
       .status(200)
-      .send(info);
+      .json({ token, ...info }); // Return token in response
   } catch (err) {
     next(err);
   }
