@@ -1,3 +1,3 @@
 MONGO=mongodb+srv://218x1a0509:samba333@prolancer.v321f.mongodb.net/?retryWrites=true&w=majority&dbname=ProLancerdb
-JWT_KEY = ntr@devara/prabhs@salaar333
+JWT_KEY=ntr@devara/prabhs@salaar333
 NODE_ENV=production
